@@ -1,0 +1,4 @@
+I need to create an empty array of 10x10
+and when I place a boat into the array, lets say a cruiser(3), it takes the array index spot + its length.
+so lets say I placed it in the coordinates 5B, the cruiser is going to be placed into the gameboard array at index 14, 15,16
+If I placed it verticaly it would be placed in 14,24,34 (index+10)

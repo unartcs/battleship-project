@@ -1,50 +1,59 @@
-function Ship() {
-    this.name = ''
-    this.sunken = false;
-    this.length = 0;
-    function setName(s) {
-        this.name = s
-    }
-    function getName() {
-        return this.name
-    }
-    function setLength(x) {
-        this.length = x;
-    }
+function shipFactory(name, length) {
     function getHit() {
-        if (this.length > 1) {
-            this.length--
+        if (this.hits < this.length) {
+            this.hits++
+            this.sunken = this.hits >= this.length
         }
-        else {
-            this.length = 0
-            console.log(this + ' has sunken')
-            this.sunken = true;
-        }
-    }
-    function getLength() {
-        return this.length;
     }
     function isSunk() {
-        return this.sunken
+        return this.hits >= this.length
     }
-    return { setName, getName, setLength, getHit, getLength, isSunk }
+    return {
+        name,
+        length,
+        hits: 0,
+        getHit,
+        sunken: false,
+        isSunk
+    }
 }
 
-function makeShips() {
-   carrier.setLength(5)
-   carrier.setName('Carrier')
+const shipList = [
+    carrier = shipFactory('Carrier', 5),
+    battleship = shipFactory('Battleship', 4),
+    cruiser = shipFactory('Cruiser', 3),
+    submarine = shipFactory('Submarine', 3),
+    destroyer = shipFactory('Destroyer', 2)
+]
 
-   battleship.setLength(4)
-   battleship.setName('Battleship')
+let gameBoardArray = new Array(100).fill(null)
 
-   cruiser.setLength(3)
-   cruiser.setName('Cruiser')
-
-   submarine.setLength(3)
-   submarine.setName('Submarine')
-
-   destroyer.setLength(2)
-   destroyer.setName('Destroyer')
+function Gameboard() {
+    //grid should be 10x10
+    function receiveAttack(cor) {
+        if (cor == shipPosition) {
+            asda
+        }
+    }
 }
 
-const shipList = [carrier = new Ship(), battleship = new Ship(), cruiser = new Ship(), submarine = new Ship(), destroyer = new Ship()]
+function domController() {
+    const gameContainer = document.querySelector('.gameboard-container')
+    function printGrid() {
+        gameBoardArray.forEach((i,index)=> {
+            console.log(index)
+            newGrid = document.createElement('div')
+            newGrid.classList.add(`grid`)
+            gameContainer.appendChild(newGrid)
+        })
+        enableGrid();
+    }
+    function enableGrid() {
+        const clickableTiles = document.querySelectorAll('.gameboard > .grid')
+    }
+    return {
+        printGrid
+    }
+}
+
+domController().printGrid()
